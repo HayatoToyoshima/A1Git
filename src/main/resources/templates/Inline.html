@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-dimensional Array</title>
+</head>
+<body>
+<small>三項演算子</small>
+<p th:text="${rand_flg} ? 'ONです' : 'OFFです'"></p>
+
+<small>リテラル置換</small>
+<p th:text="|one two three → ${four}|"></p>
+
+<small>↓ローカル変数で定義された文字列</small>
+	<div th:with="x=多次元,y=配列">
+	    <p th:text="${x}+${y}"></p>
+	</div>
+
+    <div>
+        <span th:text="'['"></span>
+        <div th:each="row : ${multiArray}">
+            <span th:text="'['"></span>
+            <div th:each="subArray : ${row}">
+                <span th:text="'['"></span>
+                <span th:each="item : ${subArray}" th:text="${item} + (itemStat.last ? '' : ', ') + ' '"></span>
+                <span th:text="']' + (subArrayStat.last ? '' : ', ') + ' '"></span>
+            </div>
+            <span th:text="']' + (rowStat.last ? '' : ', ') + ' '"></span>
+        </div>
+        <span th:text="']'"></span>
+    </div>
+</body>
+</html>

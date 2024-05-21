@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<small>↓java.util.Date()がnewされたもの</small>
+<p th:text="${new java.util.Date().toString()}"></p>
+
+
+<small>yyyy/MM/dd HH:mm:ss</small>
+<p th:text="${#dates.format(new java.util.Date(),'yyyy/MM/dd HH:mm:ss')}"></p>
+
+<p th:text="${#dates.format(new java.util.Date(),'yyyy/MM/dd HH:mm')}"></p>
+
+<p th:text="${#dates.format(new java.util.Date(),'yyyy/MM/dd HH')}"></p>
+
+<small>yyyy/MM/dd</small>
+<p th:text="${#dates.format(new java.util.Date(),'yyyy/MM/dd')}"></p>
+
+<p th:text="${#dates.format(new java.util.Date(),'yyyy/MM')}"></p>
+
+<p th:text="${#dates.format(new java.util.Date(),'yyyy')}"></p>
+
+<small>1月～12月がランダムに表示される</small>
+    <div th:switch="${month}">
+    <p th:case="1" th:text="|${month}月|"></p>
+    <p th:case="2" th:text="|${month}月|"></p>
+    <p th:case="3" th:text="|${month}月|"></p>
+    <p th:case="4" th:text="|${month}月|"></p>
+    <p th:case="5" th:text="|${month}月|"></p>
+    <p th:case="6" th:text="|${month}月|"></p>
+    <p th:case="7" th:text="|${month}月|"></p>
+    <p th:case="8" th:text="|${month}月|"></p>
+    <p th:case="9" th:text="|${month}月|"></p>
+    <p th:case="10" th:text="|${month}月|"></p>
+    <p th:case="11" th:text="|${month}月|"></p>
+    <p th:case="12" th:text="|${month}月|"></p>
+    <p th:case="*">対象なし</p>
+	</div>
+</body>
+</html>

@@ -3,6 +3,7 @@ package com.example.demo;
 
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,6 +63,44 @@ public class BookController {
     public String getClock() {
     	return "clock";
     }
+//------------------------------------------------------------------------------------------
+    @GetMapping("/ex/month")
+    public String month(Model model) {
+    	Integer rand=(int)(12*Math.random()+1);
+    	model.addAttribute("month",rand);
+		return "month";
+    	
+    }
+//------------------------------------------------------------------------------------------
+    @GetMapping("/ex/inline")
+    public String index(Model model) {
+        int[][][] multiArray = new int[10][10][10];
+        Random random = new Random();
+
+        // 10x10x10の多次元配列にランダムな数値を埋める
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                for (int k = 0; k < 10; k++) {
+                    multiArray[i][j][k] = random.nextInt(100); // 0から99までのランダムな数値
+                }
+            }
+        }
+
+        model.addAttribute("four", "four");
+        Integer rand=(int)(10*Math.random()+1);
+        if(rand%2==0) {
+            model.addAttribute("rand_flg",true);        	
+        }
+        else {
+            model.addAttribute("rand_flg",false);            	
+        }
+        
+
+        model.addAttribute("multiArray", multiArray);
+        
+        return "inline";
+    }
+  //------------------------------------------------------------------------------------------   
     
     
 }
