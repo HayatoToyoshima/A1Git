@@ -4,8 +4,71 @@
     <meta charset="UTF-8">
     <title>Book CRUD</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    
+
     <style type="text/css">
+    button{
+    background-color: #fffffd;
+    border-radius:7.5px; 
+    }
+    
+    #wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+}
+
+a{
+  color: #333;
+  
+}
+
+html,body{
+  height: 100%;/*高さを100%にして描画エリアをとる*/
+}
+
+#particles-js{ 
+  position:fixed;/*描画固定*/
+  z-index:-1;/*描画を一番下に*/
+  width: 100%;
+  height: 100%;
+  background-color:#ffffff;/*背景色*/
+  
+}
+
+#wrapper{
+  position: relative;/*描画を#particles-jsよりも上にするためposition:relative;を指定*/
+  z-index: 1;/*z-indexの数字を大きくすることで描画を#particles-jsよりも上に*/
+  width:100%;
+  height: 100%;
+}
+
+
+    #date {
+  font-family: 'Roboto', sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  color: #00000f;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+}
+    #date{
+	font-size:30px;
+	margin:0;
+	padding:0;  
+	  
+    }
+    h1{
+height:50px;
+    }
+      .gradient {
+    width: 100%;
+    
+	background: linear-gradient(135deg, #ff0000, #000fff, #ffff00);
+    /* テキストのスタイルを設定 */
+    text-align: center;
+    line-height: 200px; /* 垂直方向の中央揃え */
+    color: white;
+  }
     body{
     text-align:center;
     }
@@ -17,9 +80,118 @@
     width:300px;
     
     }
+    
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: $primary-color;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $secondary-color;
+    @include box-shadow(0, 0, 10px, rgba(0, 0, 0, 0.1));
+  }
+}
+
+
+.header {
+  background-color: $primary-color;
+  color: white;
+  padding: 20px;
+
+  h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+}
     </style>
 </head>
 <body>
+
+<div id="particles-js"></div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="http://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/move02/5-6/js/5-6.js"></script>
+<script type="text/javascript">
+particlesJS("particles-js", {
+	  "particles":{
+	    "number":{
+	      "value":60,//この数値を変更すると桜の数が増減できる
+	      "density":{
+	        "enable":true,
+	        "value_area":1121.6780303333778
+	      }
+	    },
+	    "color":{
+	      "value":"#fff"
+	    },
+	    "shape":{
+	      "type":"image",//形状は画像を指定
+	      "stroke":{
+	        "width":0,
+	      },
+	      "image":{
+	        "src":"http://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/move02/5-6/img/flower.png",//画像を指定
+	        "width":120,
+	        "height":120
+	      }
+	    },
+	    "opacity":{
+	      "value":0.06409588744762158,
+	      "random":true,
+	      "anim":{
+	        "enable":false,
+	        "speed":1,
+	        "opacity_min":0.1,
+	        "sync":false
+	      }
+	    },
+	    "size":{
+	      "value":8.011985930952697,
+	      "random":true,//サイズをランダムに
+	      "anim":{
+	        "enable":false,
+	        "speed":4,
+	        "size_min":0.1,
+	        "sync":false
+	      }
+	    },
+	    "line_linked":{
+	      "enable":false,
+	    },
+	    "move":{
+	      "enable":true,
+	      "speed":5,//この数値を小さくするとゆっくりな動きになる
+	      "direction":"bottom-right",//右下に向かって落ちる
+	      "random":true,//動きはランダムにしない
+	      "straight":false,//動きをとどめない
+	      "out_mode":"out",//画面の外に出るように描写
+	      "bounce":false,//跳ね返りなし
+	      "attract":{
+	        "enable":false,
+	        "rotateX":281.9177489524316,
+	        "rotateY":127.670995809726
+	      }
+	    }
+	  },
+	  "interactivity":{
+	    "detect_on":"canvas",
+	    "events":{
+	      "onhover":{
+	        "enable":false,
+	      },
+	      "onclick":{
+	        "enable":false,
+	      },
+	      "resize":true
+	    }
+	  },
+	  "retina_detect":false
+	});
+</script>
+
 <div id="clock"></div>
 <div class="container">
     <script>
@@ -49,25 +221,40 @@
         };
     </script>
     
+
+    
+<div id="wrapper">
+  
+
+</div>
     <div id="clock"></div>
 
-    <div id="date"></div>    
+    <div id="date"></div>  
+<a href="#"><button>トップ</button></a>     
 
+<a th:href="@{/books/ex/month}"><button>Month</button></a>
+
+<a th:href="@{/books/ex/inline}"><button>インライン</button></a> 
+
+ 
+
+ 
+<div class="gradient">
     <h1 class="mt-4">BOOK CRUD</h1>
-
+</div>
     <form th:action="@{/books}" th:object="${book}" method="post" class="mb-4">
         <input type="hidden" th:field="*{id}" />
         <div class="form-group">
             <label for="title">タイトル</label><br />
-            <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="タイトルを入力してください" required>
+            <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="タイトルを入力してください" autocomplete="off" required>
         </div>
         <div class="form-group">
             <label for="author">著者</label><br />
-            <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="著者を入力してください" required>
+            <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="著者を入力してください" autocomplete="off" required>
         </div>
         <div class="form-group">
             <label for="isbn">ISBNコード</label><br />
-            <input type="text" th:field="*{isbn}" class="form-control" id="isbn" pattern="[0-9\-]{9,16}[0-9X]" placeholder="ISBNコードを入力してください" required>
+            <input type="text" th:field="*{isbn}" class="form-control" id="isbn" pattern="[0-9\-]{9,16}[0-9X]" placeholder="ISBNコードを入力してください" autocomplete="off" required>
             
         </div>
         <button type="submit" class="btn btn-primary">登録</button>
@@ -96,6 +283,8 @@
             </tr>
         </tbody>
     </table>
+    
+
 
 </div>
 </body>

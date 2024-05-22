@@ -5,6 +5,9 @@
     <title>Multi-dimensional Array</title>
 </head>
 <body>
+<a th:href="@{/books}"><button>トップへ</button></a><br />
+<h3>Thymeleaf</h3>
+
 <small>三項演算子</small>
 <p th:text="${rand_flg} ? 'ONです' : 'OFFです'"></p>
 
@@ -13,7 +16,7 @@
 
 <small>↓ローカル変数で定義された文字列</small>
 	<div th:with="x=多次元,y=配列">
-	    <p th:text="${x}+${y}"></p>
+	    <p th:text="${x}+${y}+':10×10×10'"></p>
 	</div>
 
     <div>
