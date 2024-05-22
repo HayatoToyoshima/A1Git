@@ -106,6 +106,19 @@ height:50px;
     margin: 0;
   }
 }
+
+    /* テキストの初期色を白に設定 */
+    #text {
+        color: white;
+        transition: color 2s ease-in-out; /* テキスト色の変化を2秒かけて行う */
+    }
+    
+    /* 黒色に変化させる */
+    #text.black {
+        color: black;
+    }
+    
+    
     </style>
 </head>
 <body>
@@ -192,6 +205,22 @@ particlesJS("particles-js", {
 	});
 </script>
 
+<script type="text/javascript">
+
+//テキストの色を切り替える関数
+function toggleTextColor() {
+    var text = document.getElementById("text");
+    if (text.classList.contains("black")) {
+        text.classList.remove("black");
+    } else {
+        text.classList.add("black");
+    }
+}
+
+
+setInterval(toggleTextColor, 3000); 
+
+</script>
 <div id="clock"></div>
 <div class="container">
     <script>
@@ -240,7 +269,7 @@ particlesJS("particles-js", {
 
  
 <div class="gradient">
-    <h1 class="mt-4">BOOK CRUD</h1>
+    <h1 class="mt-4" id="text">BOOK CRUD</h1>
 </div>
     <form th:action="@{/books}" th:object="${book}" method="post" class="mb-4">
         <input type="hidden" th:field="*{id}" />
